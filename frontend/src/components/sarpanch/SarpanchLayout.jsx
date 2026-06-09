@@ -101,9 +101,10 @@ export default function SarpanchLayout() {
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />
-            <motion.aside initial={{ x: -280 }} animate={{ x: 0 }} exit={{ x: -280 }}
-              transition={{ type: 'spring', damping: 30 }}
-              className="fixed left-0 top-0 bottom-0 w-64 bg-white z-50 lg:hidden shadow-2xl">
+            <motion.aside initial={{ x: '-100%' }} animate={{ x: '0%' }} exit={{ x: '-100%' }}
+  transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
+  style={{ willChange: 'transform' }}
+  className="fixed left-0 top-0 bottom-0 w-64 bg-white z-50 lg:hidden shadow-2xl flex flex-col">
               <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600" onClick={() => setSidebarOpen(false)}>
                 <X className="w-5 h-5" />
               </button>
@@ -115,14 +116,15 @@ export default function SarpanchLayout() {
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between flex-shrink-0">
-          <button className="lg:hidden text-gray-600" onClick={() => setSidebarOpen(true)}>
-            <Menu className="w-6 h-6" />
-          </button>
-          <div className="flex-1">
-            <h2 className="text-gray-500 text-sm hidden lg:block">
-              🏘️ Sarpanch of {user?.village?.name}, {user?.district?.name}, {user?.state?.name}
-            </h2>
-          </div>
+          <button className="lg:hidden text-gray-600 p-1" onClick={() => setSidebarOpen(true)} aria-label="Open menu">
+  <Menu className="w-6 h-6" />
+</button>
+<div className="flex-1 text-center lg:text-left">
+  <span className="lg:hidden font-bold text-gray-900 text-sm">GramConnect AI</span>
+  <h2 className="text-gray-500 text-sm hidden lg:block truncate">
+    🏘️ Sarpanch of {user?.village?.name}, {user?.district?.name}, {user?.state?.name}
+  </h2>
+</div>
           <div className="flex items-center gap-3">
             <NavLink to="/sarpanch/notifications" className="relative p-2 text-gray-500 hover:text-blue-600">
               <Bell className="w-5 h-5" />
