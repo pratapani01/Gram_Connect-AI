@@ -171,12 +171,31 @@ export default function NewComplaint() {
             ))}
 
             {images.length < 5 && (
-              <label className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-primary-400 hover:bg-primary-50 transition-colors">
-                <Upload className="w-5 h-5 text-gray-400" />
-                <span className="text-xs text-gray-400 mt-1">Add image</span>
-                <input type="file" accept="image/jpeg,image/jpg,image/png,image/webp" multiple className="hidden" onChange={handleImageChange} />
-              </label>
-            )}
+  <div className="w-20 h-20 flex flex-col gap-1">
+    {/* Camera — opens camera directly on mobile */}
+    <label className="flex-1 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-primary-300 transition-colors">
+      <span className="text-[10px] text-gray-400">📷 Camera</span>
+      <input
+        type="file"
+        accept="image/*"
+        capture="environment"
+        className="hidden"
+        onChange={handleImageChange}
+      />
+    </label>
+    {/* Gallery — opens file picker / gallery */}
+    <label className="flex-1 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-primary-300 transition-colors">
+      <span className="text-[10px] text-gray-400">🖼️ Gallery</span>
+      <input
+        type="file"
+        accept="image/jpeg,image/jpg,image/png,image/webp"
+        multiple
+        className="hidden"
+        onChange={handleImageChange}
+      />
+    </label>
+  </div>
+)}
           </div>
           <p className="text-xs text-gray-400">JPG, PNG, WEBP · Max 5MB each · Up to 5 images</p>
         </div>
